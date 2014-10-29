@@ -4,7 +4,7 @@
 # Eventually, I want to print the STANDARD DEVIATION of a set of numbers.
 # In other words, if I have a set of numbers like this:
 
-#     first_dataset = [93, 65, 87, 68, 2, 64, 36, 96, 45, 47]
+#first_dataset = [93, 65, 87, 68, 2, 64, 36, 96, 45, 47]
 
 # Then I want to be able to do something like this:
 
@@ -33,8 +33,9 @@ def sum(list_of_numbers)
     running_total = running_total + number
   end
 
-  return running_total
+    return running_total
 end
+
 
 # MEAN
 # ====
@@ -46,9 +47,10 @@ def mean(list_of_numbers)
   # Let's re-use the work we did above in the sum method
 
   # ====================
-  # Your code goes here.
-  # ====================
+ return sum(list_of_numbers).to_f / list_of_numbers.count
 end
+  # ====================
+#end
 
 # VARIANCE
 # ========
@@ -63,9 +65,18 @@ def variance(list_of_numbers)
   # Let's re-use the work we did above in the mean method
 
   # ====================
-  # Your code goes here.
+    the_mean = mean(list_of_numbers)
+    running_total = 0
+    list_of_numbers.each do |num|
+      difference = num - the_mean
+      squared_difference = difference ** 2
+      running_total = running_total + squared_difference
+    end
+    return running_total.to_f / list_of_numbers.length
+  end
+
   # ====================
-end
+#end
 
 # STANDARD DEVIATION
 # ==================
@@ -74,17 +85,21 @@ end
 
 def standard_deviation(list_of_numbers)
   # ====================
-  # Your code goes here.
+  the_variance = variance(list_of_numbers)
+  return the_variance ** 0.5
   # ====================
 end
 
 
 # Finally, everything above allows us to do:
 
-# first_dataset = [93, 65, 87, 68, 2, 64, 36, 96, 45, 47]
-# stdev1 = standard_deviation(first_dataset)
-# puts "The standard deviation of the first dataset is #{stdev1.round(2)}."
+first_dataset = [93, 65, 87, 68, 2, 64, 36, 96, 45, 47]
+puts mean(first_dataset)
+puts variance(first_dataset)
+#sum("first_dataset")
+stdev1 = standard_deviation(first_dataset)
+puts "The standard deviation of the first dataset is #{stdev1.round(2)}."
 
-# second_dataset = [2, 9, 405, 562, 740, 133, 346, 509, 21, 93]
-# stdev2 = standard_deviation(second_dataset)
-# puts "The standard deviation of the second dataset is #{stdev2.round(2)}."
+second_dataset = [2, 9, 405, 562, 740, 133, 346, 509, 21, 93]
+stdev2 = standard_deviation(second_dataset)
+puts "The standard deviation of the second dataset is #{stdev2.round(2)}."
